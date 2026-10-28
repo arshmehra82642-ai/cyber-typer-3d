@@ -1,0 +1,4 @@
+*.log
+*.txt
+run_live.sh
+serve.sh
