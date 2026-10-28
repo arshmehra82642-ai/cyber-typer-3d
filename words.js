@@ -1,36 +1,34 @@
 /**
- * CyberTyper 3D - Word Dictionaries
- * Diverse tech & sci-fi terms covering full A-Z for all tiers.
+ * CyberTyper 3D - Educational & Knowledge Word Dictionaries
+ * Curated academic, educational, and learning vocabulary across full A-Z.
  */
 
 const WORD_BANKS = {
   cadet: [
-    "atom", "byte", "code", "data", "echo", "flux", "grid", "hack",
-    "icon", "java", "kern", "link", "mesh", "node", "open", "ping",
-    "quad", "root", "sync", "term", "user", "void", "warp", "xray",
-    "yarn", "zero", "bash", "chip", "disk", "firm", "gate", "host",
-    "ipod", "jump", "kill", "lock", "nano", "port", "quit", "scan",
-    "unit", "volt", "wire", "zone", "core", "fire", "load", "loop",
-    "neon", "path", "safe", "slot", "wave", "beam", "fast", "deny"
+    "book", "read", "math", "test", "exam", "quiz", "task", "know", "mind", "fact",
+    "desk", "page", "note", "rule", "pass", "rank", "skill", "learn", "study", "smart",
+    "write", "brain", "class", "teach", "grade", "honor", "coach", "tutor", "words", "logic",
+    "focus", "think", "solve", "guide", "paper", "youth", "ideas", "goals", "value", "atom",
+    "code", "data", "echo", "flux", "grid", "hack", "icon", "link", "node", "unit",
+    "warp", "zone", "core", "path", "safe", "beam", "fast", "view", "grow", "term"
   ],
   hacker: [
-    "access", "binary", "cipher", "daemon", "engine", "filter", "glitch",
-    "hacker", "inject", "kernel", "lambda", "matrix", "neural", "octave",
-    "packet", "quantum", "router", "sensor", "trojan", "uptime", "vector",
-    "widget", "xdebug", "yields", "zombie", "backup", "buffer", "client",
-    "crypto", "domain", "driver", "firewall", "memory", "module", "parser",
-    "plasma", "python", "remote", "script", "serial", "shield", "signal",
-    "socket", "subnet", "syntax", "system", "thread", "tunnel", "upload"
+    "academy", "biology", "college", "degree", "diploma", "educate", "faculty", "grammar",
+    "history", "lecture", "library", "physics", "project", "scholar", "science", "student",
+    "subject", "teacher", "tuition", "formula", "analyze", "concept", "mentor", "reading",
+    "writing", "algebra", "studies", "seminar", "wisdom", "license", "syllabus", "training",
+    "practice", "research", "homework", "graduate", "campus", "academic", "learning", "thinking",
+    "binary", "cipher", "daemon", "engine", "filter", "kernel", "matrix", "neural", "quantum",
+    "router", "sensor", "system", "vector", "memory", "shield", "signal", "syntax"
   ],
   overlord: [
-    "algorithm", "artificial", "assembler", "bandwidth", "blockchain",
-    "cybernetics", "cyberpunk", "datacenter", "decentralize", "encryption",
-    "executable", "fingerprint", "hyperdrive", "hyperspace", "immutable",
-    "infrastructure", "interceptor", "javascript", "kubernetes", "mainframe",
-    "malwarebyte", "microcontroller", "multithread", "nanosecond", "networking",
-    "observability", "optimization", "overclocking", "penetration", "polymorphic",
-    "queryrunner", "repository", "scalability", "simulation", "singularity",
-    "subroutine", "telemetry", "throughput", "vulnerability", "zerodayhack"
+    "education", "university", "curriculum", "knowledge", "literature", "mathematics",
+    "philosophy", "psychology", "laboratory", "scholarship", "dissertation", "graduation",
+    "examination", "comprehension", "intelligence", "qualification", "encyclopedia", "pedagogical",
+    "institutions", "scholarships", "astrophysics", "neuroscience", "polytechnic", "achievement",
+    "accreditation", "collaboration", "fundamentals", "investigation", "undergraduate", "postgraduate",
+    "certificates", "methodology", "algorithm", "artificial", "cybernetics", "cyberpunk",
+    "datacenter", "encryption", "hyperspace", "infrastructure", "microcontroller", "singularity"
   ]
 };
 
