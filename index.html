@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CyberTyper 3D - Sci-Fi Typing Defense</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- WebGL 3D World Canvas -->
+  <div id="webgl-canvas"></div>
+
+  <!-- CRT Retro Hologram Scanlines -->
+  <div class="crt-overlay"></div>
+
+  <!-- Floating 3D Word Overlay for Drones -->
+  <div id="word-container"></div>
+
+  <!-- Realtime Cyber HUD Top Bar -->
+  <header id="hud-top">
+    <!-- Left: Shield Integrity -->
+    <div class="hud-panel">
+      <div class="shield-container">
+        <div class="shield-label">
+          <span>SHIELD INTEGRITY</span>
+          <span id="shield-val">100%</span>
+        </div>
+        <div class="shield-bar-bg">
+          <div id="shield-bar" class="shield-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center: Live Score & Combo Multiplier -->
+    <div class="hud-panel">
+      <div class="score-box">
+        <span class="score-label">CORE SCORE</span>
+        <span id="score-val" class="score-val">0</span>
+      </div>
+      <div id="combo-badge" class="combo-badge">
+        <span id="combo-val">1x</span> COMBO
+      </div>
+    </div>
+
+    <!-- Right: Telemetry (WPM, Accuracy) & Controls -->
+    <div class="hud-panel">
+      <div class="stat-pill">
+        <span class="label">WPM</span>
+        <span id="wpm-val" class="val">0</span>
+      </div>
+      <div class="stat-pill">
+        <span class="label">ACCURACY</span>
+        <span id="acc-val" class="val">100%</span>
+      </div>
+      <button id="btn-mute" class="hud-btn" title="Toggle Sound">🔊</button>
+      <button id="btn-pause" class="hud-btn" title="Pause Game (ESC)">⏸️</button>
+    </div>
+  </header>
+
+  <!-- Mobile Keyboard Anchor -->
+  <input type="text" id="mobile-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text">
+  <button id="btn-mobile-kb" class="mobile-keyboard-btn">⌨️ TAP TO TYPE</button>
+
+  <!-- Start Screen Modal -->
+  <div id="start-screen" class="modal-overlay">
+    <div class="modal-card">
+      <h1 class="game-title">CyberTyper 3D</h1>
+      <p class="game-subtitle">Neural Mainframe Defense System</p>
+
+      <div class="high-score-banner">
+        ★ HIGH SCORE: <span id="start-highscore">0</span> ★
+      </div>
+
+      <div class="instructions-box">
+        <strong>MISSION PROTOCOL:</strong> Hostile drones are warping into your terminal sector.
+        <br>• <strong>Type the words</strong> appearing on incoming drones to lock target.
+        <br>• Press <strong>BACKSPACE</strong> or <strong>ESC</strong> to unlock/switch target anytime.
+        <br>• Fire plasma lasers and trigger particle bursts to neutralize them.
+        <br>• Maintain high combos for score multipliers. <strong>Do not let drones breach your shields!</strong>
+      </div>
+
+      <div class="difficulty-group">
+        <button id="diff-cadet" class="diff-btn active">CADET [EASY]</button>
+        <button id="diff-hacker" class="diff-btn">HACKER [MEDIUM]</button>
+        <button id="diff-overlord" class="diff-btn">OVERLORD [EXPERT]</button>
+      </div>
+
+      <button id="btn-start-game" class="cyber-primary-btn">INITIALIZE DEFENSE [SPACE]</button>
+    </div>
+  </div>
+
+  <!-- Pause Screen Modal -->
+  <div id="pause-screen" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h2 class="game-title" style="font-size: 32px;">SYSTEM SUSPENDED</h2>
+      <p class="game-subtitle">Tactical Defense Paused</p>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+        <button id="btn-resume" class="cyber-primary-btn">RESUME MISSION</button>
+        <button id="btn-restart-pause" class="cyber-secondary-btn">REBOOT SECTOR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Over Screen Modal -->
+  <div id="game-over-screen" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h2 class="game-over-title">MAINFRAME BREACHED</h2>
+      <div id="go-highscore-banner" class="high-score-banner"></div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="sc-label">FINAL SCORE</div>
+          <div id="go-score" class="sc-val">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-label">PEAK WPM</div>
+          <div id="go-wpm" class="sc-val">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-label">ACCURACY</div>
+          <div id="go-acc" class="sc-val">100%</div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-label">DRONES DESTROYED</div>
+          <div id="go-drones" class="sc-val">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-label">MAX COMBO</div>
+          <div id="go-combo" class="sc-val">1x</div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-label">DEFENSE RATING</div>
+          <div class="sc-val" style="color: var(--neon-cyan);">CYBER</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <button id="btn-restart-go" class="cyber-primary-btn">REBOOT SYSTEM [SPACE]</button>
+        <button id="btn-diff-go" class="cyber-secondary-btn">CHANGE DIFFICULTY</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: Local Three.js with CDN fallback, Audio, Scene, Words, Game -->
+  <script src="lib/three.min.js"></script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>');
+    }
+  </script>
+  <script src="words.js"></script>
+  <script src="audio.js"></script>
+  <script src="scene.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

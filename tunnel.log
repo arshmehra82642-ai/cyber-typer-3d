@@ -1,0 +1,17 @@
+2026-10-28T03:30:36Z INF Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee, are subject to the Cloudflare Online Services Terms of Use (https://www.cloudflare.com/website-terms/), and Cloudflare reserves the right to investigate your use of Tunnels for violations of such terms. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps
+2026-10-28T03:30:36Z INF Requesting new quick Tunnel on trycloudflare.com...
+2026-10-28T03:30:42Z INF +--------------------------------------------------------------------------------------------+
+2026-10-28T03:30:42Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
+2026-10-28T03:30:42Z INF |  https://editorial-abilities-viewer-sunglasses.trycloudflare.com                           |
+2026-10-28T03:30:42Z INF +--------------------------------------------------------------------------------------------+
+2026-10-28T03:30:42Z INF Cannot determine default configuration path. No file [config.yml config.yaml] in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp /etc/cloudflared /usr/local/etc/cloudflared]
+2026-10-28T03:30:42Z INF Version 2026.10.5 (Checksum 72e0d05a67e09da87cf495e409a28c3cc5994dd23fc66a982eebea6a55923b7d)
+2026-10-28T03:30:42Z INF GOOS: linux, GOVersion: go1.27.3, GoArch: arm64
+2026-10-28T03:30:42Z INF Settings: map[ha-connections:1 protocol:quic url:http://127.0.0.1:8080]
+2026-10-28T03:30:42Z INF Autoupdate frequency is set autoupdateFreq=86400000
+2026-10-28T03:30:42Z INF Generated Connector ID: e7288abe-91e8-421d-baab-a51b41a4841e
+2026-10-28T03:30:42Z INF Initial protocol quic
+2026-10-28T03:30:42Z INF ICMP proxy will use 192.168.1.50 as source for IPv4
+2026-10-28T03:30:42Z INF ICMP proxy will use fe80::fcfc:a5ff:feb5:889 in zone wlan0 as source for IPv6
+2026-10-28T03:30:42Z WRN The user running cloudflared process has a GID (group ID) that is not within ping_group_range. You might need to add that user to a group within that range, or instead update the range to encompass a group the user is already in by modifying /proc/sys/net/ipv4/ping_group_range. Otherwise cloudflared will not be able to ping this network error="open /proc/sys/net/ipv4/ping_group_range: permission denied"
+2026-10-28T03:30:42Z WRN ICMP proxy feature is disabled error="cannot create ICMPv4 proxy: open /proc/sys/net/ipv4/ping_group_range: permission denied nor ICMPv6 proxy: bind: invalid argument"
