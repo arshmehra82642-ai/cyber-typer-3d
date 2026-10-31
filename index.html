@@ -3,7 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>CyberTyper 3D - Sci-Fi Typing Defense</title>
+  <title>CyberTyper 3D - Free Online Sci-Fi Typing Defense Game</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="CyberTyper 3D - Free Online Sci-Fi Typing Defense Game">
+  <meta name="description" content="Play CyberTyper 3D online! Fast-paced 3D Sci-Fi typing defense game built with Three.js. Test your typing speed (WPM), destroy incoming hostile drones, and learn vocabulary. Works on mobile & PC.">
+  <meta name="keywords" content="CyberTyper 3D, CyberTyper, typing game, 3d typing game, online typing speed test, learn typing game, touch typing, sci-fi browser game">
+  <meta name="author" content="Arsh Mehra">
+  <meta name="theme-color" content="#00f0ff">
+  <link rel="canonical" href="https://arshmehra82642-ai.github.io/cyber-typer-3d/">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arshmehra82642-ai.github.io/cyber-typer-3d/">
+  <meta property="og:title" content="CyberTyper 3D — Sci-Fi Typing Defense Game">
+  <meta property="og:description" content="Defend the neural mainframe in full 3D! Fast-paced typing defense with lasers, procedural audio, and real-time WPM stats. Play free now.">
+  <meta property="og:image" content="https://arshmehra82642-ai.github.io/cyber-typer-3d/icon-512.png">
+
+  <!-- Twitter Card -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://arshmehra82642-ai.github.io/cyber-typer-3d/">
+  <meta property="twitter:title" content="CyberTyper 3D — Sci-Fi Typing Defense Game">
+  <meta property="twitter:description" content="Defend the neural mainframe in full 3D! Fast-paced typing defense with lasers, procedural audio, and real-time WPM stats. Play free now.">
+  <meta property="twitter:image" content="https://arshmehra82642-ai.github.io/cyber-typer-3d/icon-512.png">
+
+  <!-- PWA & Mobile Web App -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CyberTyper 3D">
+
+  <!-- Structured Data / JSON-LD for Google Search Engine snippet -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "CyberTyper 3D",
+    "url": "https://arshmehra82642-ai.github.io/cyber-typer-3d/",
+    "description": "An action-packed 3D Sci-Fi typing defense game. Lock onto hostile drones by typing target words and boost typing speed in real time.",
+    "genre": ["Action", "Arcade", "Educational", "Typing"],
+    "gamePlatform": ["Web Browser", "Android", "iOS", "Windows", "MacOS", "Linux"],
+    "applicationCategory": "Game",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Arsh Mehra"
+    }
+  }
+  </script>
+
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
@@ -88,6 +142,7 @@
       </div>
 
       <button id="btn-start-game" class="cyber-primary-btn">INITIALIZE DEFENSE [SPACE]</button>
+      <button id="btn-pwa-install" class="cyber-secondary-btn" style="margin-top: 12px; display: none;">📲 INSTALL APP ON PHONE / PC</button>
     </div>
   </div>
 
@@ -155,5 +210,37 @@
   <script src="audio.js"></script>
   <script src="scene.js"></script>
   <script src="game.js"></script>
+  <script>
+    // Register PWA Service Worker for offline capability & fast launch
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch((err) => console.log('SW reg failed', err));
+      });
+    }
+
+    // PWA Install prompt handling
+    let deferredPrompt;
+    const installBtn = document.getElementById('btn-pwa-install');
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (installBtn) {
+        installBtn.style.display = 'block';
+      }
+    });
+
+    if (installBtn) {
+      installBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          if (outcome === 'accepted') {
+            installBtn.style.display = 'none';
+          }
+          deferredPrompt = null;
+        }
+      });
+    }
+  </script>
 </body>
 </html>

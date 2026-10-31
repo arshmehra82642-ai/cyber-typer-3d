@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arshmehra82642-ai.github.io/cyber-typer-3d/sitemap.xml
